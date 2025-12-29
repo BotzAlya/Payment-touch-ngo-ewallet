@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch NGO E-Wallet - Donasi Digital untuk Kemanusiaan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #2ecc71;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 32px;
+            color: var(--secondary);
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .feature-icon i {
+            font-size: 36px;
+            color: var(--secondary);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Wallet Dashboard */
+        .wallet-dashboard {
+            padding: 80px 0;
+            background-color: #f5f7fa;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .wallet-card {
+            background: linear-gradient(135deg, var(--primary) 0%, #34495e 100%);
+            border-radius: var(--radius);
+            padding: 40px;
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .wallet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .wallet-header h3 {
+            font-size: 24px;
+        }
+
+        .wallet-balance {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .balance-label {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .balance-amount {
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .wallet-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .wallet-btn {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .wallet-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .wallet-btn i {
+            font-size: 20px;
+        }
+
+        .transaction-history {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .transaction-history h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .transaction-list {
+            list-style: none;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .transaction-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .transaction-amount {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .positive {
+            color: var(--success);
+        }
+
+        .negative {
+            color: var(--accent);
+        }
+
+        /* Donation Campaigns */
+        .campaigns {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .campaigns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .campaign-card {
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .campaign-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .campaign-img {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 18px;
+        }
+
+        .campaign-content {
+            padding: 25px;
+        }
+
+        .campaign-category {
+            display: inline-block;
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--secondary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .campaign-content h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .campaign-progress {
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--secondary);
+            border-radius: 4px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .donate-btn {
+            width: 100%;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .donate-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-container {
+                position: relative;
+            }
+            
+            .mobile-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary);
+                padding: 20px;
+                box-shadow: var(--shadow);
+                z-index: 1000;
+            }
+            
+            .mobile-menu.active {
+                display: block;
+            }
+            
+            .mobile-menu ul {
+                list-style: none;
+            }
+            
+            .mobile-menu li {
+                margin-bottom: 15px;
+            }
+            
+            .mobile-menu a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+            }
+            
+            .hero h2 {
+                font-size: 30px;
+            }
+            
+            .wallet-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h2 {
+                font-size: 26px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .wallet-card {
+                padding: 30px 20px;
+            }
+            
+            .balance-amount {
+                font-size: 36px;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h1>Touch <span>NGO</span> E-Wallet</h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#"><i class="fas fa-wallet"></i> Dompet</a></li>
+                    <li><a href="#"><i class="fas fa-hand-holding-usd"></i> Donasi</a></li>
+                    <li><a href="#"><i class="fas fa-history"></i> Riwayat</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Bantuan</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-menu">
+                <div class="user-avatar">AN</div>
+                <span>Ahmad Nurdin</span>
+            </div>
+            
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="#"><i class="fas fa-wallet"></i> Dompet</a></li>
+                <li><a href="#"><i class="fas fa-hand-holding-usd"></i> Donasi</a></li>
+                <li><a href="#"><i class="fas fa-history"></i> Riwayat</a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i> Bantuan</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Donasi Digital untuk Kemanusiaan</h2>
+            <p>Touch NGO E-Wallet memudahkan Anda untuk memberikan bantuan kepada mereka yang membutuhkan dengan cepat, aman, dan transparan. Bergabunglah dengan ribuan donatur lainnya dalam misi kemanusiaan.</p>
+            <button class="cta-button" id="topUpBtn"><i class="fas fa-plus-circle"></i> Top Up Dompet Sekarang</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mengapa Memilih Touch NGO E-Wallet?</h2>
+                <p>Kami menyediakan platform donasi digital yang terpercaya dengan fitur-fitur unggulan untuk memudahkan Anda berbagi kebaikan.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Aman & Terpercaya</h3>
+                    <p>Transaksi Anda dilindungi dengan sistem keamanan berlapis dan enkripsi tingkat tinggi.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Cepat & Real-time</h3>
+                    <p>Donasi Anda langsung sampai ke penerima dengan proses yang cepat dan transparan.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Transparan & Akuntabel</h3>
+                    <p>Pantau penggunaan dana donasi Anda melalui laporan yang dapat diakses kapan saja.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wallet Dashboard -->
+    <section class="wallet-dashboard" id="wallet">
+        <div class="container">
+            <div class="section-title">
+                <h2>Dompet Digital Anda</h2>
+                <p>Kelola saldo dan transaksi donasi Anda dengan mudah</p>
+            </div>
+            
+            <div class="dashboard-container">
+                <div class="wallet-card">
+                    <div class="wallet-header">
+                        <h3>Dompet Touch NGO</h3>
+                        <i class="fas fa-wallet" style="font-size: 30px;"></i>
+                    </div>
+                    
+                    <div class="wallet-balance">
+                        <div class="balance-label">Saldo Tersedia</div>
+                        <div class="balance-amount">Rp 2.450.000</div>
+                    </div>
+                    
+                    <div class="wallet-actions">
+                        <button class="wallet-btn" id="topUpBtn2">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Top Up</span>
+                        </button>
+                        <button class="wallet-btn" id="sendBtn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Kirim Dana</span>
+                        </button>
+                        <button class="wallet-btn" id="withdrawBtn">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Tarik Dana</span>
+                        </button>
+                        <button class="wallet-btn" id="historyBtn">
+                            <i class="fas fa-history"></i>
+                            <span>Riwayat</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="transaction-history">
+                    <h3>Transaksi Terakhir</h3>
+                    <ul class="transaction-list">
+                        <li class="transaction-item">
+                            <div class="transaction-info">
+                                <h4>Donasi untuk Korban Bencana Alam</h4>
+                                <p>12 Juni 2023 • 14:30</p>
+                            </div>
+                            <div class="transaction-amount negative">-Rp 500.000</div>
+                        </li>
+                        <li class="transaction-item">
+                            <div class="transaction-info">
+                                <h4>Top Up via Bank Transfer</h4>
+                                <p>10 Juni 2023 • 09:15</p>
+                            </div>
+                            <div class="transaction-amount positive">+Rp 1.000.000</div>
+                        </li>
+                        <li class="transaction-item">
+                            <div class="transaction-info">
+                                <h4>Donasi Pendidikan Anak Yatim</h4>
+                                <p>5 Juni 2023 • 16:45</p>
+                            </div>
+                            <div class="transaction-amount negative">-Rp 350.000</div>
+                        </li>
+                        <li class="transaction-item">
+                            <div class="transaction-info">
+                                <h4>Refund Donasi</h4>
+                                <p>1 Juni 2023 • 11:20</p>
+                            </div>
+                            <div class="transaction-amount positive">+Rp 300.000</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Campaigns -->
+    <section class="campaigns">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kampanye Donasi Terkini</h2>
+                <p>Pilih kampanye yang ingin Anda dukung dan berikan bantuan sesuai kemampuan</p>
+            </div>
+            
+            <div class="campaigns-grid">
+                <div class="campaign-card">
+                    <div class="campaign-img" style="background-color: #a3d9ff;">
+                        <i class="fas fa-home" style="font-size: 60px; color: #3498db;"></i>
+                    </div>
+                    <div class="campaign-content">
+                        <span class="campaign-category">Bencana Alam</span>
+                        <h3>Bantu Korban Gempa di Sulawesi</h3>
+                        <p>Bantuan untuk korban gempa bumi di Sulawesi Tengah, termasuk makanan, obat-obatan, dan tempat tinggal sementara.</p>
+                        
+                        <div class="campaign-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%;"></div>
+                            </div>
+                            <div class="progress-info">
+                                <span>Terkumpul: Rp 850 juta</span>
+                                <span>Target: Rp 1,2 miliar</span>
+                            </div>
+                        </div>
+                        
+                        <button class="donate-btn" data-campaign="Gempa Sulawesi"><i class="fas fa-heart"></i> Donasi Sekarang</button>
+                    </div>
+                </div>
+                
+                <div class="campaign-card">
+                    <div class="campaign-img" style="background-color: #d5f4e6;">
+                        <i class="fas fa-graduation-cap" style="font-size: 60px; color: #2ecc71;"></i>
+                    </div>
+                    <div class="campaign-content">
+                        <span class="campaign-category">Pendidikan</span>
+                        <h3>Beasiswa untuk Anak Yatim</h3>
+                        <p>Bantuan pendidikan untuk anak yatim dan dhuafa agar dapat melanjutkan pendidikan hingga jenjang yang lebih tinggi.</p>
+                        
+                        <div class="campaign-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%;"></div>
+                            </div>
+                            <div class="progress-info">
+                                <span>Terkumpul: Rp 180 juta</span>
+                                <span>Target: Rp 400 juta</span>
+                            </div>
+                        </div>
+                        
+                        <button class="donate-btn" data-campaign="Beasiswa Anak Yatim"><i class="fas fa-heart"></i> Donasi Sekarang</button>
+                    </div>
+                </div>
+                
+                <div class="campaign-card">
+                    <div class="campaign-img" style="background-color: #f9e6e6;">
+                        <i class="fas fa-heartbeat" style="font-size: 60px; color: #e74c3c;"></i>
+                    </div>
+                    <div class="campaign-content">
+                        <span class="campaign-category">Kesehatan</span>
+                        <h3>Operasi Katarak Gratis</h3>
+                        <p>Bantu operasi katarak gratis untuk lansia dan masyarakat kurang mampu di daerah terpencil.</p>
+                        
+                        <div class="campaign-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%;"></div>
+                            </div>
+                            <div class="progress-info">
+                                <span>Terkumpul: Rp 270 juta</span>
+                                <span>Target: Rp 300 juta</span>
+                            </div>
+                        </div>
+                        
+                        <button class="donate-btn" data-campaign="Operasi Katarak"><i class="fas fa-heart"></i> Donasi Sekarang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <div class="logo">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h3>Touch <span>NGO</span> E-Wallet</h3>
+                    </div>
+                    <p>Platform donasi digital yang menghubungkan para dermawan dengan penerima manfaat secara langsung, transparan, dan akuntabel.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Cara Kerja</a></li>
+                        <li><a href="#">Kampanye</a></li>
+                        <li><a href="#">Laporan Keuangan</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontak Kami</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Jl. Kemanusiaan No. 123, Jakarta</li>
+                        <li><i class="fas fa-phone"></i> (021) 1234-5678</li>
+                        <li><i class="fas fa-envelope"></i> info@touch-ngo.org</li>
+                        <li><i class="fas fa-clock"></i> Senin - Jumat: 08:00 - 17:00</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Metode Pembayaran</h3>
+                    <p>Kami menerima berbagai metode pembayaran untuk memudahkan donasi Anda:</p>
+                    <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                        <span style="background: white; color: #333; padding: 5px 10px; border-radius: 4px; font-size: 14px;">Bank Transfer</span>
+                        <span style="background: white; color: #333; padding: 5px 10px; border-radius: 4px; font-size: 14px;">E-Wallet</span>
+                        <span style="background: white; color: #333; padding: 5px 10px; border-radius: 4px; font-size: 14px;">Kartu Kredit</span>
+                        <span style="background: white; color: #333; padding: 5px 10px; border-radius: 4px; font-size: 14px;">QRIS</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Touch NGO E-Wallet. Semua hak dilindungi. | <a href="#" style="color: var(--secondary);">Kebijakan Privasi</a> | <a href="#" style="color: var(--secondary);">Syarat & Ketentuan</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Top Up -->
+    <div class="modal" id="topUpModal">
+        <div class="modal-content">
+            <div class="close-modal" id="closeTopUpModal">&times;</div>
+            <h2><i class="fas fa-plus-circle"></i> Top Up Dompet</h2>
+            <p>Isi saldo dompet Anda untuk donasi kemanusiaan.</p>
+            
+            <form id="topUpForm">
+                <div class="form-group">
+                    <label for="topUpAmount">Jumlah Top Up (Rp)</label>
+                    <input type="number" id="topUpAmount" class="form-control" placeholder="Contoh: 500000" min="10000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentMethod">Metode Pembayaran</label>
+                    <select id="paymentMethod" class="form-control" required>
+                        <option value="">Pilih metode pembayaran</option>
+                        <option value="bank">Transfer Bank</option>
+                        <option value="ewallet">E-Wallet (OVO, GoPay, Dana)</option>
+                        <option value="credit">Kartu Kredit</option>
+                        <option value="qris">QRIS</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phoneNumber">Nomor Telepon</label>
+                    <input type="tel" id="phoneNumber" class="form-control" placeholder="0812-3456-7890" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Lanjutkan Pembayaran</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Donasi -->
+    <div class="modal" id="donateModal">
+        <div class="modal-content">
+            <div class="close-modal" id="closeDonateModal">&times;</div>
+            <h2><i class="fas fa-heart"></i> Donasi untuk <span id="campaignName"></span></h2>
+            <p>Berikan donasi Anda untuk membantu sesama yang membutuhkan.</p>
+            
+            <form id="donateForm">
+                <div class="form-group">
+                    <label for="donateAmount">Jumlah Donasi (Rp)</label>
+                    <input type="number" id="donateAmount" class="form-control" placeholder="Contoh: 100000" min="10000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="donorName">Nama Donatur (Opsional)</label>
+                    <input type="text" id="donorName" class="form-control" placeholder="Nama Anda">
+                </div>
+                
+                <div class="form-group">
+                    <label for="donorMessage">Pesan (Opsional)</label>
+                    <textarea id="donorMessage" class="form-control" rows="3" placeholder="Tulis pesan dukungan Anda..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Konfirmasi Donasi</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
+        // Modal Elements
+        const topUpModal = document.getElementById('topUpModal');
+        const donateModal = document.getElementById('donateModal');
+        const closeTopUpModal = document.getElementById('closeTopUpModal');
+        const closeDonateModal = document.getElementById('closeDonateModal');
+        
+        // Top Up Buttons
+        const topUpBtns = document.querySelectorAll('#topUpBtn, #topUpBtn2');
+        topUpBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                topUpModal.classList.add('active');
+            });
+        });
+        
+        // Donate Buttons
+        const donateBtns = document.querySelectorAll('.donate-btn');
+        donateBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const campaignName = btn.getAttribute('data-campaign');
+                document.getElementById('campaignName').textContent = campaignName;
+                donateModal.classList.add('active');
+            });
+        });
+        
+        // Close Modals
+        closeTopUpModal.addEventListener('click', () => {
+            topUpModal.classList.remove('active');
+        });
+        
+        closeDonateModal.addEventListener('click', () => {
+            donateModal.classList.remove('active');
+        });
+        
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === topUpModal) {
+                topUpModal.classList.remove('active');
+            }
+            if (e.target === donateModal) {
+                donateModal.classList.remove('active');
+            }
+        });
+        
+        // Form Submissions
+        document.getElementById('topUpForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = document.getElementById('topUpAmount').value;
+            alert(`Top up sebesar Rp ${parseInt(amount).toLocaleString('id-ID')} berhasil diproses! Silakan selesaikan pembayaran.`);
+            topUpModal.classList.remove('active');
+            // Reset form
+            document.getElementById('topUpForm').reset();
+        });
+        
+        document.getElementById('donateForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = document.getElementById('donateAmount').value;
+            const campaign = document.getElementById('campaignName').textContent;
+            alert(`Terima kasih! Donasi sebesar Rp ${parseInt(amount).toLocaleString('id-ID')} untuk "${campaign}" telah berhasil.`);
+            donateModal.classList.remove('active');
+            // Reset form
+            document.getElementById('donateForm').reset();
+        });
+        
+        // Wallet Action Buttons
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            alert('Fitur kirim dana akan segera tersedia!');
+        });
+        
+        document.getElementById('withdrawBtn').addEventListener('click', () => {
+            alert('Fitur tarik dana akan segera tersedia!');
+        });
+        
+        document.getElementById('historyBtn').addEventListener('click', () => {
+            alert('Membuka halaman riwayat transaksi lengkap...');
+        });
+        
+        // Simulate real-time balance update
+        setInterval(() => {
+            // This is just a simulation - in a real app, this would be fetched from an API
+            const balanceElement = document.querySelector('.balance-amount');
+            const currentBalance = parseInt(balanceElement.textContent.replace(/[^\d]/g, ''));
+            // Random small fluctuation for demo purposes
+            const fluctuation = Math.floor(Math.random() * 10000) - 5000;
+            const newBalance = Math.max(0, currentBalance + fluctuation);
+            balanceElement.textContent = `Rp ${newBalance.toLocaleString('id-ID')}`;
+        }, 15000);
+    </script>
+</body>
+</html>
